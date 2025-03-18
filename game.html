@@ -108,6 +108,8 @@
     <audio id="correct-sound" src="correct.mp3"></audio>
 
     <script>
+         let player1 = localStorage.getItem("player1") || "User 1";
+         let player2 = localStorage.getItem("player2") || "User 2";
 let questions = ["christredeemer.jpg", "tajmahal.jpg", "eiffel.jpg", "redfort.jpg"];
 let answers = {
     "christredeemer.jpg": "Christ the Redeemer, Brazil",
@@ -138,8 +140,8 @@ function startTimer() {
 }
 
 function updateUI() {
-    document.getElementById("timer1").textContent = `User 1: ${formatTime(timers[1])} | Score: ${scores[1]}`;
-    document.getElementById("timer2").textContent = `User 2: ${formatTime(timers[2])} | Score: ${scores[2]}`;
+    document.getElementById("timer1").textContent = `${player1}: ${formatTime(timers[1])} | Score: ${scores[1]}`;
+    document.getElementById("timer2").textContent = `${player2}: ${formatTime(timers[2])} | Score: ${scores[2]}`;
 }
 
 function formatTime(seconds) {
@@ -227,13 +229,14 @@ function endGame() {
     winnerTitle.style.color = "#ffd700";
 
     let winnerMessage = document.createElement("h2");
-    if (scores[1] > scores[2]) {
-        winnerMessage.textContent = "🏆 Winner: User 1!";
-    } else if (scores[2] > scores[1]) {
-        winnerMessage.textContent = "🏆 Winner: User 2!";
-    } else {
-        winnerMessage.textContent = "🤝 It's a Tie!";
-    }
+if (scores[1] > scores[2]) {
+    winnerMessage.textContent = `🏆 Winner: ${player1}!`;
+} else if (scores[2] > scores[1]) {
+    winnerMessage.textContent = `🏆 Winner: ${player2}!`;
+} else {
+    winnerMessage.textContent = "🤝 It's a Tie!";
+}
+
 
     let finalScores = document.createElement("p");
     finalScores.textContent = `Final Scores: User 1: ${scores[1]} | User 2: ${scores[2]}`;
