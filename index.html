@@ -186,6 +186,7 @@
     .option:hover {
       background-color: #8a2be2;
     }
+    
   </style>
 </head>
 <body>
@@ -202,17 +203,17 @@
   <h1 class="title">Select Category</h1>
 
   <div class="category-grid">
-    <div class="category-card" data-category="General Knowledge" onclick="selectCategory('General Knowledge')">
+    <div class="category-card" data-category="General Knowledge" onclick="selectCategory('General Knowledge')" >
       <div class="category-header">General Knowledge</div>
-      <div class="category-status">Free</div>
+      
     </div>
     <div class="category-card" data-category="Sport" onclick="selectCategory('Sport')">
       <div class="category-header">Sport</div>
-      <div class="category-status">Free</div>
+      
     </div>
     <div class="category-card" data-category="History" onclick="selectCategory('History')">
       <div class="category-header">History</div>
-      <div class="category-status">Free</div>
+     
     </div>
   </div>
 </div>
@@ -223,16 +224,6 @@
   <div id="subcategoryOptions"></div>
 </div>
 
-<!-- ✅ Quiz Container -->
-<div class="quiz-container" id="quizContainer">
-  <div class="question" id="question">Question will appear here...</div>
-  <div id="options">
-    <button class="option" onclick="checkAnswer('A')">Option A</button>
-    <button class="option" onclick="checkAnswer('B')">Option B</button>
-    <button class="option" onclick="checkAnswer('C')">Option C</button>
-    <button class="option" onclick="checkAnswer('D')">Option D</button>
-  </div>
-</div>
 
 <script>
   let selectedCategory = null;
@@ -254,9 +245,20 @@
       const option = document.createElement('div');
       option.classList.add('subcategory-card');
       option.textContent = `${category} - Option ${i}`;
+      
+      option.onclick = function () {
+        if (selectedCategory === 'General Knowledge' && i === 1) {
+          window.location.href = 'registration.html';
+        }
+      };
+
       options.appendChild(option);
     }
   }
+
+  
+    
+  
 </script>
 
 </body>
